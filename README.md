@@ -5,7 +5,7 @@
 
 ## The project source directory is "HealthGo-web-platform"
 
-## How to run the application (two ways)
+## How to run the application (two ways):
 ### Run and setup from docker image
   - Install docker from https://www.docker.com (if not already installed)
   - Download or clone this repo from github
@@ -16,6 +16,9 @@
 	~~~
   - Wait for everything to build and startup
   - From browser, go to localhost:8080
+
+  ![loginPage](./pictures/000.png)
+  - Ready
 
 
 ### Run and setup web application without using docker
@@ -30,3 +33,18 @@
     node server.js
     ~~~
   - From browser, go to localhost:8080
+  ![loginPage](./pictures/000.png)
+  - Ready
+
+### Special notes for Fitbit user credential
+  Fitbit API doesn't allow several users use the same fitbit account to pull fitbit data at the same time. It only allows one user to connect to the fitbit at one time and other users will be blocked to connect to the fitbit API.
+
+### Database that we used
+   This application uses MongoDB on cloud.
+
+### Credentials could be used for test
+
+| Userame | password |
+| ------ | ------ |
+| user1@gmail.com | 123 |
+| user2@gmail.com |123456  |
