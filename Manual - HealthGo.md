@@ -35,5 +35,6 @@
 This is for reviewing the user's profile. The user can also edit the profile.
  ![profile](./pictures/profile.PNG?raw=true)
 ### Maps screen
+![Maps](./pictures/map.PNG?raw=true)
 
 

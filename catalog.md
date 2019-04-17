@@ -31,7 +31,5 @@
      - finalise-setup - for new user's signup
    - docker-compose.yml
 
-- [README.md] - readme file.
-
 
 
