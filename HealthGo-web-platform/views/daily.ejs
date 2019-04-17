@@ -1,0 +1,259 @@
+<link rel="stylesheet" href="/chartjs/css/normalize.css">
+<link rel="stylesheet" href="/chartjs/css/main.css">
+<script src="/chartjs/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="/js/dataSharing.js"></script>
+
+<div class="content">
+    <h1 class="title">Welcome! Here's today's data</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <!--<h5 class="title">or you can insert date</h5>-->
+                           <!-- <input type="date" class="form-control" name="startDate" style="width:60%" <% if (user.publishers.startDate) {%>value="
+                            <%= user.publishers.startDate.getFullYear() %>-
+                                <% if (user.publishers.startDate.getMonth() < 9) { %>0
+                                    <% } %>
+                                        <%= user.publishers.startDate.getMonth()+1 %>-
+                                            <% if (user.publishers.startDate.getDate() < 10) { %>0
+                                                <% } %>
+                                                    <%= user.publishers.startDate.getDate() %>"
+                                                        <% } %>>-->
+                                                            <button type='button' class="btn btn-info" style="width:50%;float:left" onclick="window.open('/auth/fitbit')">Connect to fitbit</button>
+                                                            <button type='button' class="btn btn-info" style="width:50%;float:right" onclick="window.location.reload()">Refresh the data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="title">
+                <strong>Daily Activities</strong>
+            </h4>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Today's Steps</h4>
+                        <h1 class="title">
+                            <strong>
+                                <% if (locals.todaystep) { %>
+                                    <%= locals.todaystep %>
+                                        <% } %>
+                            </strong>
+                        </h1>
+                        steps
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Today's distance </h4>
+                        <h1 class="title">
+                            <strong>
+                                <% if (locals.todaydist ) { %>
+                                    <%= locals.todaydist  %>
+                                        <% } %>
+                            </strong>
+                        </h1>
+                        meters
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Today's floors </h4>
+                        <h1 class="title">
+                            <strong>
+                                <% if (locals.todayfloor ) { %>
+                                    <%= locals.todayfloor  %>
+                                        <% } %>
+                            </strong>
+                        </h1>
+                        floors
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Sedentary minutes </h4>
+                        <h1 class="title">
+                            <strong>
+                                <% if (locals.todaysendent   ) { %>
+                                    <%= locals.todaysendent    %>
+                                        <% } %>
+                            </strong>
+                        </h1>
+                        sedentary minutes
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Today's calories burned </h4>
+                        <h1 class="title">
+                            <strong>
+                                <% if (locals.todaycalori    ) { %>
+                                    <%= locals.todaycalori     %>
+                                        <% } %>
+                            </strong>
+                        </h1>
+                        calories
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Today's actitivity </h4>
+                light active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.todaylight ) { %>
+                            <%= locals.todaylight  %>
+                                        <% } %>
+                    </strong>
+                </h1>
+                fairly active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.todayfairly ) { %>
+                            <%= locals.todayfairly   %>
+                                        <% } %>
+                    </strong>
+                </h1>
+                very active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.todayvery ) { %>
+                            <%= locals.todayvery   %>
+                                        <% } %>
+                    </strong>
+                </h1>
+            </div>
+            <div class="header">
+                    <h4 class="title">Today's sleep </h4>
+                    sleep efficiency:
+                    <h1 class="title">
+                        <strong>
+                            <% if (locals.todaysleepE ) { %>
+                                <%= locals.todaysleepE   %>
+                                            <% } %>
+                        </strong>
+                    </h1>
+                    minutes asleep:
+                    <h1 class="title">
+                        <strong>
+                            <% if (locals.todayminutesAsleep ) { %>
+                                <%= locals.todayminutesAsleep   %>
+                                            <% } %>
+                        </strong>
+                    </h1>
+                    minutes to fall asleep:
+                    <h1 class="title">
+                        <strong>
+                            <% if (locals.todayminutesToFallAsleep ) { %>
+                                <%= locals.todayminutesToFallAsleep   %>
+                                            <% } else {%>
+                                <%= 0 %>
+                                <% } %>
+                        </strong>
+                    </h1>
+                    time in bed:
+                    <h1 class="title">
+                        <strong>
+                            <% if (locals.todaytimeInBed ) { %>
+                                <%= locals.todaytimeInBed   %>
+                                            <% } %>
+                        </strong>
+                    </h1>
+                    <canvas id="steps24"></canvas>
+                    <script src="/chartjs/js/steps24.js"></script>
+                    <canvas id="stepDist"></canvas>
+                    <script src="/chartjs/js/stepDist.js"></script>
+                </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Steps</h4>
+                       <!-- <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModalSteps">Set Steps goals</button>-->
+                        <p class="category">Number of Steps today</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="todaystep" height="335"></canvas>
+                        <script src="/chartjs/js/todaystep.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Sleeps</h4>
+                            <p class="category">different sleep status</p>
+                        </div>
+                        <div class="content" width="100">
+                            <canvas id="todaysleep"></canvas>
+                            <script src="/chartjs/js/todaysleep.js"></script>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-xs-3">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Activity</h4>
+                            <p class="category">today's activity</p>
+                        </div>
+                        <div class="content" width="100">
+                            <canvas id="todayactivity"></canvas>
+                            <script src="/chartjs/js/todayactivity.js"></script>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="https://www.nuffieldhealth.com/" target="_blank">
+                            Nuffield Health Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nuffieldhealth.com/article" target="_blank">
+                            Health & Fitness Articles
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+</div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        demo.initChartist();
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome <%= user.facebook.name %>!"
+        }, {
+                type: 'info',
+                timer: 4000
+            });
+    });
+</script>

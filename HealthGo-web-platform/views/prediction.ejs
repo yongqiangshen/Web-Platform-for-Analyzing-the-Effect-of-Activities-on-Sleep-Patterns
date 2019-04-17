@@ -1,0 +1,194 @@
+<link rel="stylesheet" href="/chartjs/css/normalize.css">
+<link rel="stylesheet" href="/chartjs/css/main.css">
+<script src="/chartjs/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<html>
+
+<body>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <h1 class="title"><strong>Machine Learning Results Based On The Static CSV Data Exported From Fitbit</strong></h1>
+                <h4 class="title">
+                    <strong>Input Your Daily Activities</strong>
+                </h4>
+                <form name='prediction' method="get" action="/predictSleepQuality">
+
+
+                    <div class="three_form">
+                        Calories burned:
+                        <input type="number" name="calories_burned" style="width: 200px;" required /> Steps:
+                        <input type="number" name="steps" style="width: 200px;" required /> Distance:
+                        <input type="number" name="distance" style="width: 200px;" required />
+                    </div>
+                    <div class="three_form">
+                        Floors:
+
+                        <input type="number" name="floors" style="width: 200px;" required /> Minutes sedentary:
+                        <input type="number" name="minutes_sedentary" style="width: 200px;" required /> Minutes lightly active:
+                        <input type="number" name="minutes_lightly_active" style="width: 200px;" required />
+                    </div>
+                    <div class="three_form">
+                        Minutes fairly active:
+
+                        <input type="number" name="minutes_fairly_active" style="width: 200px;" required /> Minutes very active:
+                        <input type="number" name="minutes_very_active" style="width: 200px;" required /> Activity calories:
+                        <input type="number" name="activity_calories" style="width: 200px;" required />
+                    </div>
+                    <p>Click the button to predict</p>
+                    <br>
+                    <p id="content"></p>
+                    <input type="submit" , name="predict" , id="content" , value="Predict" />
+
+
+
+                </form>
+
+
+                <!--<h4 class="title"><strong>Sleep Quality Prediction<strong></h4>
+                    <h5>The machine learning accuracy:</h5><br>
+                    <p id="demo1"></p><br>
+                    <h5>Sleep quality results:</h5><br>                    
+                    <p id="demo2"></p>-->
+                <div class="header">
+                    <h4 class="title"><strong>Machine Learning (KNN)</strong></h4>
+                    <h4 style="color:#161dff;">Prediction Results: </h4>
+                    <h5>
+                        Sleep quality will be:
+
+                        <strong style="color:#ff4229;">
+                            <% if (locals.type_val  ) { %>
+                            <%= locals.type_val  %>
+                            <% } %>
+                        </strong>
+                    </h5>
+                    <h5>
+                        Prediction Accuracy (%):
+                        <strong style="color:#ff4229;">
+                            <% if (locals.acc_val  ) { %>
+                            <%= locals.acc_val  %>
+                            <% } %>
+                        </strong>
+                    </h5>
+                    <h4 style="color:#161dff;">Your input activities are: </h4>
+                    <h6>
+                            step:
+                        <strong>
+                                <% if (locals.steps_val ) { %>
+                                    <%= locals.steps_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                        floors: 
+                        <strong>
+                                <% if (locals.floors_val  ) { %>
+                                    <%= locals.floors_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            distance: 
+                        <strong>
+                                <% if (locals.distance_val  ) { %>
+                                    <%= locals.distance_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            minutes of sedentary activity:
+                        <strong>
+                                <% if (locals.minutes_sedentary_val  ) { %>
+                                    <%= locals.minutes_sedentary_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            minutes of lightly activity: 
+                        <strong>
+                                <% if (locals.minutes_lightly_active_val  ) { %>
+                                    <%= locals.minutes_lightly_active_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            minutes of fairly activity: 
+                        <strong>
+                                <% if (locals.minutes_fairly_active_val  ) { %>
+                                    <%= locals.minutes_fairly_active_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            minutes of very activity: 
+                        <strong>
+                                <% if (locals.minutes_very_active_val  ) { %>
+                                    <%= locals.minutes_very_active_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            activity calories: 
+                        <strong>
+                                <% if (locals.activity_calories_val  ) { %>
+                                    <%= locals.activity_calories_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+                    <h6>
+                            calories_burned: 
+                        <strong>
+                                <% if (locals.calories_burned_val  ) { %>
+                                    <%= locals.calories_burned_val  %>
+                                        <% } %>
+                        </strong>
+                    </h6>
+
+                    <p>Notes: the training data is from static exported csv data!</p>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="https://www.nuffieldhealth.com/" target="_blank">
+                                Nuffield Health Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.nuffieldhealth.com/article" target="_blank">
+                                Health & Fitness Articles
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome <%= user.facebook.name %>!"
+
+            }, {
+                    type: 'info',
+                    timer: 4000
+                });
+
+        });
+    </script>
+</body>
+
+</html>

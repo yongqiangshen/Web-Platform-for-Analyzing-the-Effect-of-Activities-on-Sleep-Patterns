@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="/chartjs/css/normalize.css">
+<link rel="stylesheet" href="/chartjs/css/main.css">
+<script src="/js/dataSharing.js"></script>
+
+<link rel="stylesheet" href="/chartjs/css/normalize.css">
+<link rel="stylesheet" href="/chartjs/css/main.css">
+<script src="/chartjs/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="/js/dataSharing.js"></script>
+
+
+<Script type="text/javascript">
+    function Calc()
+    {
+        alert("The analysis takes about 3 minutes to finish, please wait until it's done!\nPlease don't double click!");
+        window.open('/dataDisplay');
+    }
+</Script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+        <div class="content">
+          <form name='data'>
+          <div class="card">
+            <div class="content">
+                <h1 class="title"><strong>Machine Learning Results Based On The Live Data From Fitbit</strong></h1>
+              <hr>
+                <table width = "1200" style = "font-size : 20px">
+                    <tr style="color:rgba(46,18,26,0.74);">
+                        <th width = "60px">Algorithms</th>
+                        <th width = "300px">Your tonight's sleep quality <br> based on your historical fitbit data and today's activities</th>
+                        <th width = "200px">Machine Learning Accuracy (%)</th>
+                    </tr>
+                    <tr>
+                        <td>Decision Tree</td>
+                        <td style="color:#ff7520;"><% if (locals.treesleep) { %>
+                            <%= locals.treesleep  %>
+                            <% } %>
+                        </td>
+                        <td style="color:#1318ff;">
+                            <% if (locals.treeaccuracy) { %>
+                            <%= locals.treeaccuracy  %>
+                            <% } %>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>K-nearest neighbors</td>
+                        <td style="color:#ff7520;"><% if (locals.knnsleep) { %>
+                            <%= locals.knnsleep  %>
+                            <% } %>
+                        </td>
+                        <td style="color:#1318ff;">
+                            <% if (locals.knnaccuracy) { %>
+                            <%= locals.knnaccuracy  %>
+                            <% } %>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Support Vector Machine</td>
+                        <td style="color:#ff7520;"><% if (locals.svmsleep) { %>
+                            <%= locals.svmsleep  %>
+                            <% } %>
+                        </td>
+                        <td style="color:#1318ff;">
+                            <% if (locals.svmaccuracy) { %>
+                            <%= locals.svmaccuracy  %>
+                            <% } %>
+
+                        </td>
+                    </tr>
+
+                </table>
+                <br><br>
+
+
+                          <div class="col-md-5">
+                              <div class="card">
+                                  <div class="header">
+                                      <h4 class="title"><strong>Sleep Data Distribution in a Year</strong></h4>
+                                      <p class="category">Yearly Sleep Quality Label</p>
+                                  </div>
+                                  <div class="content">
+                                      <canvas id="sleepcategory"></canvas>
+                                      <script src="/chartjs/js/sleepCategory.js"></script>
+                                  </div>
+                              </div>
+                          </div>
+						  <div class="col-md-5">
+                              <div class="card">
+                                  <div class="header">
+                                      <h4 class="title"><strong>Correlations Between Activities and Sleep Efficiency</strong></h4>
+                                      <p class="category">Based on yearly activities and sleep efficiency data</p>
+                                  </div>
+                                  <div class="content">
+                                      <canvas id="corr"></canvas>
+                                      <script src="/chartjs/js/correlation.js"></script>
+                                  </div>
+                              </div>
+                          </div>
+                  <!--        <div class="col-md-5">
+                              <div class="card">
+                                  <div class="header">
+                                      <h4 class="title">Machine Learning Prediction Accuracy</h4>
+                                      <p class="category">Analysis of Accuracy of Algorithms</p>
+                                  </div>
+                                  <div class="content">
+                                      <canvas id="accuracy"></canvas>
+                                      <script>
+                                          var mychart = document.getElementById("accuracy").getContext('2d');
+                                          var chart = new Chart(mychart, {
+                                              type: 'bar',
+                                              data:{
+                                                  labels: ['Decision Tree', 'SVM', 'KNN'],
+                                                  datasets: []
+                                              }
+
+
+                                          });
+                                      </script>
+                                  </div>
+                              </div>
+                          </div><br-->
+                <br><br>
+                <div style="font-size : 16px">
+                    <h4><strong>Notes:</strong></h4>
+                    <ul>
+                        <li>Machine Learning is based on the 8 historical activities data from the user's fitbit</li>
+                        <li>The 345 data size was split into training set and test set</li>
+                        <li>The accuracy given here was from test set prediction </li>
+                        <li>The SVM algorithm is running slow, please wait...</li>
+                        <li>Sleep Efficiency > 97% is defined as "good"</li>
+                        <li>Sleep Efficiency < 97% and >= 93% is defined as "fair" </li>
+                        <li>Sleep Efficiency < 93% is defined as "poor" </li>
+                        <li>The training data is from the fitbit between 2016-12-15 and 2017-11-25</li>
+
+
+
+                </div>
+						    
+
+
+                            
+               <div class="content">
+                <button type = 'button'class="btn btn-info" style="width:60%" onclick="Calc();">Predict</button>
+                  <% if (locals.big) { %>
+                    <%= locals.big %>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+          </form>
+      </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="https://www.nuffieldhealth.com/" target="_blank">
+                                Nuffield Health Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.nuffieldhealth.com/article" target="_blank">
+                               Health & Fitness Articles
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+

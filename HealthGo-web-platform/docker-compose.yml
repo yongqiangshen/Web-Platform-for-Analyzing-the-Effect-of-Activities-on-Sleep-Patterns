@@ -1,0 +1,7 @@
+version: '3'
+services:
+  #Change to name webapp
+  healthgo:
+    build: .
+    ports:
+      - "8080:8080"

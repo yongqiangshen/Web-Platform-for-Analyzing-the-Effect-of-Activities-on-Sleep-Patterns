@@ -1,0 +1,265 @@
+<link rel="stylesheet" href="/chartjs/css/normalize.css">
+<link rel="stylesheet" href="/chartjs/css/main.css">
+<script src="/chartjs/js/vendor/modernizr-2.8.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="/js/dataSharing.js"></script>
+
+<div class="content">
+    <h1 class="title">Welcome! Here is your yearly data</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <button type='button' class="btn btn-info" style="width:50%;float:left" onclick="window.open('/auth/fitbit')">Connect to fitbit</button>
+                            <button type='button' class="btn btn-info" style="width:50%;float:right" onclick="window.location.reload();">Refresh the data</button>
+                            <h5 class="title" style="color:#ff4229;">
+                                    <% if (!locals.yearlysleepE)   { %>
+                                        <% if (locals.yearlylight) { %>
+                                        <%= "---Data have not complete loading, please wait for 10 seconds and click refresh again"  %>
+                                            <% }} %>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="title">
+                <strong>Yearly Activities in Average</strong>
+            </h4>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Yearly actitivity </h4>
+                light active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlylight ) { %>
+                            <%= locals.yearlylight  %>
+                                <% } %>
+                    </strong>
+                </h1>
+                fairly active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlyfairly ) { %>
+                            <%= locals.yearlyfairly   %>
+                                <% } %>
+                    </strong>
+                </h1>
+                very active minutes:
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlyvery ) { %>
+                            <%= locals.yearlyvery   %>
+                                <% } %>
+                    </strong>
+                </h1>
+            </div>
+            <div class="header">
+                <h4 class="title">Yearly Steps</h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlystep) { %>
+                            <%= locals.yearlystep %>
+                                <% } %>
+                    </strong>
+                </h1>
+                steps
+            </div>
+            <div class="header">
+                <h4 class="title">Yearly distance </h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlydist ) { %>
+                            <%= locals.yearlydist  %>
+                                <% } %>
+                    </strong>
+                </h1>
+                meters
+            </div>
+
+            <div class="header">
+                <h4 class="title">Yearly sleep efficiency:</h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlysleepE ) { %>
+                            <%= locals.yearlysleepE   %>
+                                <% } %>
+                                    %</strong>
+                </h1>
+            </div>
+            <div class="header">
+                <h4 class="title">Yearly floors </h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlyfloor ) { %>
+                            <%= locals.yearlyfloor  %>
+                                <% } %>
+                    </strong>
+                </h1>
+                floors
+            </div>
+
+            <div class="header">
+                <h4 class="title">Yearly calories burned </h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlycalori    ) { %>
+                            <%= locals.yearlycalori     %>
+                                <% } %>
+                    </strong>
+                </h1>
+                calories
+            </div>
+
+            <div class="header">
+                <h4 class="title">Sedentary minutes </h4>
+                <h1 class="title">
+                    <strong>
+                        <% if (locals.yearlysendent   ) { %>
+                            <%= locals.yearlysendent    %>
+                                <% } %>
+                    </strong>
+                </h1>
+                sedentary minutes
+            </div>
+            <div>
+                <canvas id="stepsMonth"></canvas>
+                <script src="/chartjs/js/stepsMonth.js"></script>
+                <canvas id="yearcal"></canvas>
+                <script src="/chartjs/js/yearcal.js"></script>
+                <canvas id="yeardis"></canvas>
+                <script src="/chartjs/js/yeardis.js"></script>
+                <canvas id="yearfair"></canvas>
+                <script src="/chartjs/js/yearfair.js"></script>
+                <canvas id="yearflo"></canvas>
+                <script src="/chartjs/js/yearflo.js"></script>
+                <canvas id="yearlight"></canvas>
+                <script src="/chartjs/js/yearlight.js"></script>
+                <canvas id="yearsed"></canvas>
+                <script src="/chartjs/js/yearsed.js"></script>
+                <canvas id="yearsleep"></canvas>
+                <script src="/chartjs/js/yearsleep.js"></script>
+                <canvas id="yearvery"></canvas>
+                <script src="/chartjs/js/yearvery.js"></script>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly Activities</h4>
+                        <p class="category">Light, fair, very activities of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="activyearPic"></canvas>
+                        <script src="/chartjs/js/activyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly Sedentary Minutes</h4>
+                        <p class="category">Sedentary Minutes of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="sedyearPic"></canvas>
+                        <script src="/chartjs/js/sedyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly Steps vs. Sleep</h4>
+                        <p class="category">Steps vs. sleep of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="stepyearPic"></canvas>
+                        <script src="/chartjs/js/stepyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly Distance</h4>
+                        <p class="category">Distance of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="disyearPic"></canvas>
+                        <script src="/chartjs/js/disyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly calories vs. Steps</h4>
+                        <p class="category">Calories vs. Steps of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="calyearPic"></canvas>
+                        <script src="/chartjs/js/calyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Yearly Sleep Efficiency</h4>
+                        <p class="category">Sleep Efficiency of a year</p>
+                    </div>
+                    <div class="content">
+                        <canvas id="sleepyearPic"></canvas>
+                        <script src="/chartjs/js/sleepyearPic.js"></script>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="https://www.nuffieldhealth.com/" target="_blank">
+                            Nuffield Health Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nuffieldhealth.com/article" target="_blank">
+                            Health & Fitness Articles
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+</div>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        demo.initChartist();
+        $.notify({
+            icon: 'pe-7s-gift',
+            message: "Welcome <%= user.facebook.name %>!"
+        }, {
+                type: 'info',
+                timer: 4000
+            });
+    });
+</script>
